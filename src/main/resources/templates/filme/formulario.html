@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"> <!-- Especificar que o projeto usará thymeleaf -->
+<head th:include="index :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="container">
+        <div th:include="index :: menu"></div> <!-- incluir menu que foi criado no index -->
+
+        <form>
+            <div class="mb-3">
+                <input name="id" th:value="${filme.id}" type="text" hidden="true">
+                <label for="nomeFilme" class="form-label">Filme:</label>
+                <input type="text" name="nome" th:value="${filme.nome}" id="nomeFilme" class="form-control" placeholder="Digite o nome do filme" required>
+
+                <label for="diretorId" class="form-label">Diretor</label>
+                <select id="diretorId" th:field="${filme.diretor.id}" class="form-control" required>
+                    <option value="" selected="selected" disabled>Selecione...</option>
+                    <option th:each="diretor: ${diretores}" th:value="${diretor.id}" th:text="${diretor.nome}"></option>
+                </select>
+            </div>
+            <button th:formaction="@{/salvar}" formmethod="post" class="btn btn-dark">Salvar</button>
+        </form>
+    </div>
+</body>
+</html>

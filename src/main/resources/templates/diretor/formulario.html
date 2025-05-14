@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"> <!-- Especificar que o projeto usará thymeleaf -->
+<head th:include="index :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="container">
+        <div th:include="index :: menu"></div> <!-- incluir menu que foi criado no index -->
+
+        <form>
+            <div class="mb-3">
+                <input name="id" th:value="${diretor.id}" type="text" hidden="true">
+                <label for="nomeDiretor" class="form-label">Diretor:</label>
+                <input type="text" name="nome" th:value="${diretor.nome}" id="nomeDiretor" class="form-control" placeholder="Digite o nome do diretor" required>
+            </div>
+            <button th:formaction="@{/salvarDiretor}" formmethod="post" class="btn btn-dark">Salvar</button>
+        </form>
+    </div>
+</body>
+</html>

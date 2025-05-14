@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"> <!-- Especificar que o projeto usará thymeleaf -->
+<head th:include="index :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="container">
+        <div th:include="index :: menu"></div> <!-- incluir menu que foi criado no index -->
+        <a type="button" class="btn btn-outline-info float-right" th:href="@{/diretor}">Criar Diretor</a>
+        <table class="table"> <!-- Listar todos os diretores -->
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="diretor : ${listaDeDiretores}">
+                    <td><span th:text="${diretor.id}"></span></td>
+                    <td><span th:text="${diretor.nome}"></span></td>
+                    <td>
+                        <a th:href="@{'/alterarDiretor/' + ${diretor.id}}" type="button" class="btn btn-primary">Alterar</a>
+                        <a th:href="@{'/removerDiretor/' + ${diretor.id}}" type="button" class="btn btn-danger">Remover</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

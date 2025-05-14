@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"> <!-- Especificar que o projeto usará thymeleaf -->
+<head th:include="index :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="container">
+        <div th:include="index :: menu"></div> <!-- incluir menu que foi criado no index -->
+        <a type="button" class="btn btn-outline-info float-right" th:href="@{/filme}">Criar Filme</a>
+        <table class="table"> <!-- Listar todos os filmes -->
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Diretor</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="filme : ${listaDeFilmes}">
+                    <td><span th:text="${filme.id}"></span></td>
+                    <td><span th:text="${filme.nome}"></span></td>
+                    <td><span th:text="${filme.diretor.nome}">0</span></td>
+                    <td>
+                        <a th:href="@{'/alterar/' + ${filme.id}}" type="button" class="btn btn-primary">Alterar</a>
+                        <a th:href="@{'/remover/' + ${filme.id}}" type="button" class="btn btn-danger">Remover</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
